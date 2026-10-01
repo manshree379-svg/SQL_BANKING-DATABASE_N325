@@ -1,6 +1,6 @@
 create database BankingDB;
 use BankingDB;
-CREATE TABLE IF NOT EXISTS Customers
+CREATE TABLE Customers
 (
     CustomerID INT,
     FirstName VARCHAR(50),
@@ -11,32 +11,31 @@ CREATE TABLE IF NOT EXISTS Customers
 
 describe Customers;
 
-CREATE TABLE IF NOT EXISTS Accounts (
+CREATE TABLE Accounts (
     AccountID INT,
     AccountType VARCHAR(20),
     Balance DECIMAL(10,2)
 );
 
-CREATE TABLE IF NOT EXISTS Transactions (
+CREATE TABLE Transactions (
     TransactionID INT,
     TransactionDate DATE,
     Amount DECIMAL(10,2),
     TransactionType VARCHAR(20)
 );
 
-
-CREATE TABLE IF NOT EXISTS Branches (
+CREATE TABLE Branches (
     BranchID INT,
     BranchName VARCHAR(100),
     BranchAddress VARCHAR(200),
     BranchPhone VARCHAR(15)
 );
 
-CREATE TABLE IF NOT EXISTS AccountBranches ( 
+CREATE TABLE AccountBranches ( 
 		AssignmentDate DATE
 );
 
-CREATE TABLE IF NOT EXISTS Loans (
+CREATE TABLE Loans (
     LoanID INT,
     LoanAmount DECIMAL(10,2),
     InterestRate DECIMAL(5,2),
@@ -127,11 +126,10 @@ ADD CONSTRAINT FK_Accounts_Branches
 FOREIGN KEY (BranchID)
 REFERENCES Branches(BranchID);
 
-
 INSERT INTO Customers
 (CustomerID, FirstName, LastName, Email, Phone, DateOfBirth)
 VALUES
-(102,'Rahul','Sharma','rahul12@gmail.com','9876543210','1998-04-15');
+(101,'Rahul','Sharma','rahul@gmail.com','9876543210','1998-04-15');
 
 INSERT INTO Accounts
 (AccountID, CustomerID, AccountType, Balance)
@@ -142,33 +140,31 @@ SELECT * FROM ACCOUNTS;
 
 UPDATE Customers
 SET Phone='9999999999'
-WHERE CustomerID=102;
+WHERE CustomerID=101;
 
 select * from customers;
 
 UPDATE Customers
 SET Email='rahul.sharma@gmail.com'
-WHERE CustomerID=102;
+WHERE CustomerID=101;
 
 -- Insert 4 Records into Customers Table
 INSERT INTO Customers
 (CustomerID, FirstName, LastName, Email, Phone, DateOfBirth)
 VALUES
-(106, 'Priya', 'Patil', 'priya@gmail.com', '9988776655', '2000-09-20'),
-(107, 'Amit', 'Patel', 'amit.patel@gmail.com', '9876500001', '1995-06-18'),
-(108, 'Sneha', 'Joshi', 'sneha.joshi@gmail.com', '9876500002', '1997-09-12'),
-(109, 'Rohan', 'Kulkarni', 'rohan.k@gmail.com', '9876500003', '1993-11-25');
-DESC Customers;
-select * from customers;
+(102, 'Priya', 'Patil', 'priya@gmail.com', '9988776655', '2000-09-20'),
+(103, 'Amit', 'Patel', 'amit.patel@gmail.com', '9876500001', '1995-06-18'),
+(104, 'Sneha', 'Joshi', 'sneha.joshi@gmail.com', '9876500002', '1997-09-12'),
+(105, 'Rohan', 'Kulkarni', 'rohan.k@gmail.com', '9876500003', '1993-11-25');
 
 -- Insert 4 Records into Accounts Table
 INSERT INTO Accounts
 (AccountID, CustomerID, AccountType, Balance)
 VALUES
-(202, 106, 'Current', 40000),
-(203, 107, 'Savings', 35000),
-(204, 108, 'Current', 60000),
-(205, 109, 'Savings', 45000);
+(202, 102, 'Current', 40000),
+(203, 103, 'Savings', 35000),
+(204, 104, 'Current', 60000),
+(205, 105, 'Savings', 45000);
 
 -- Insert 5 Records into Transactions Table
 INSERT INTO Transactions
@@ -196,8 +192,8 @@ VALUES
 INSERT INTO Loans
 (LoanID, LoanAmount, InterestRate, StartDate, EndDate, CustomerID)
 VALUES
-(301, 500000, 8.50, '2025-01-15', '2030-01-15', 102),
-(302, 300000, 9.25, '2025-02-10', '2028-02-10', 106),
-(303, 750000, 8.75, '2025-03-20', '2032-03-20', 107),
-(304, 250000, 10.00, '2025-04-05', '2029-04-05', 108),
-(305, 1000000, 7.95, '2025-05-12', '2035-05-12', 109);
+(301, 500000, 8.50, '2025-01-15', '2030-01-15', 101),
+(302, 300000, 9.25, '2025-02-10', '2028-02-10', 102),
+(303, 750000, 8.75, '2025-03-20', '2032-03-20', 103),
+(304, 250000, 10.00, '2025-04-05', '2029-04-05', 104),
+(305, 1000000, 7.95, '2025-05-12', '2035-05-12', 105);
